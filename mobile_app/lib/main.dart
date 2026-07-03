@@ -1,15 +1,21 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'features/home/presentation/pages/home_dashboard_page.dart';
+import 'routing/app_router.dart';
+import 'themes/dark_theme.dart';
+import 'themes/light_theme.dart';
 
 void main() {
-  // The ProviderScope stores the state of all Riverpod providers
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: Color(0xFF0D1117),
+    systemNavigationBarIconBrightness: Brightness.light,
+  ));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,34 +24,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Health Dashboard App',
+      title: 'AI Healthcare Assistant',
       debugShowCheckedModeBanner: false,
-      
-      // Explicit light theme adjustments
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          primary: Colors.blue.shade700,
-        ),
-        scaffoldBackgroundColor: const Color(0xFFF8FAFC), // Clean off-white background
-        cardColor: Colors.white,
-      ),
-      
-      // Temporary dark theme support for testing micro-interactions
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          brightness: Brightness.dark,
-        ),
-        cardColor: const Color(0xFF1E293B),
-      ),
-      themeMode: ThemeMode.system,
-      
-      // Set the Home Dashboard as the initial route entry point
+      theme: LightTheme.data,
+      darkTheme: DarkTheme.data,
+      themeMode: ThemeMode.dark,
       home: const HomeDashboardPage(),
+      onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }
 }

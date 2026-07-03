@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../../themes/app_colors.dart';
 
 class NotificationButton extends StatelessWidget {
   const NotificationButton({super.key});
@@ -8,15 +9,40 @@ class NotificationButton extends StatelessWidget {
     return Stack(
       alignment: Alignment.topRight,
       children: [
-        IconButton(
-          icon: const Icon(Icons.notifications_none_rounded, size: 24),
-          onPressed: () {},
-        ),
         Container(
-          margin: const EdgeInsets.only(top: 8, right: 8),
-          width: 9,
-          height: 9,
-          decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColors.border),
+          ),
+          child: IconButton(
+            icon: const Icon(
+              Icons.notifications_outlined,
+              size: 20,
+              color: AppColors.textPrimary,
+            ),
+            onPressed: () {},
+            padding: EdgeInsets.zero,
+          ),
+        ),
+        // Red dot badge
+        Positioned(
+          top: 8,
+          right: 8,
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              color: AppColors.emergency,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: AppColors.background,
+                width: 1.5,
+              ),
+            ),
+          ),
         ),
       ],
     );

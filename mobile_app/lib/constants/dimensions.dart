@@ -1,3 +1,4 @@
+/// Legacy alias — use AppSpacing from themes/app_spacing.dart for new code
 class Dimensions {
   const Dimensions._();
 
@@ -8,4 +9,7 @@ class Dimensions {
   static const spacingXl = 32.0;
   static const radiusSm = 8.0;
   static const radiusMd = 12.0;
+  static const radiusLg = 18.0;
+  static const radiusXl = 22.0;
+  static const radiusFull = 100.0;
 }

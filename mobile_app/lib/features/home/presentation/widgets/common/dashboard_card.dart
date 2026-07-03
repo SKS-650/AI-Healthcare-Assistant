@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../../../../../themes/app_colors.dart';
+import '../../../../../../themes/app_spacing.dart';
 
+/// Simple reusable dashboard card wrapper
 class DashboardCard extends StatelessWidget {
   final Widget child;
 
@@ -7,6 +10,20 @@ class DashboardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(margin: const EdgeInsets.all(8), child: Padding(padding: const EdgeInsets.all(12), child: child));
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: AppSpacing.sm,
+      ),
+      padding: const EdgeInsets.all(AppSpacing.cardPaddingMd),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius:
+            BorderRadius.circular(AppSpacing.radiusLg),
+        border: Border.all(color: AppColors.border),
+        boxShadow: AppColors.shadowCard,
+      ),
+      child: child,
+    );
   }
 }
